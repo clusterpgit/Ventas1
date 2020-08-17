@@ -1,0 +1,43 @@
+.panel-footer{
+  margin-top: 30px;
+  padding-top: 35px;
+  padding-bottom: 30px;
+  border-top: 0;
+  font-family: Arial
+}
+
+
+@media (min-width: 1200px) {
+ 	 .jumbotron{
+		background-image: url("../images/jb_image.jpg");
+		background-size: cover;
+	 	height: 720px;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	 .jumbotron{
+		background-image: url("../images/jb_image_xl.jpg");
+	 	background-size: cover;
+	 	height: 720px;
+	}
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Home Page */
+   .jumbotron{
+		background-image: url("../images/jb_image_md.png");
+	 	background-size: cover;
+	 	height: 500px;
+	}
+  /* End Home Page */
+
+  @media (min-width: 577) and (max-width: 767px) {
+		.jumbotron{
+			background-image: url("../images/jb_image_md.png");
+	 		background-size: cover;
+	 		height: 500px;
+		}
+	}
+
