@@ -14,7 +14,7 @@ singupForm.addEventListener('submit', (e) => {
         .createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
             console.log('registrado');
-            alert('Vendedor Registrado');
+            //alert('Vendedor Registrado');
         });
 
 });
