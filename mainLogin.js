@@ -1,6 +1,6 @@
 //constante para login
 const loginForm = document.querySelector('#login-form');
-
+//logout min35
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.querySelector('#login-email').value;
@@ -14,5 +14,11 @@ loginForm.addEventListener('submit', (e) => {
         .then(userCredential => {
 
             alert('Usuario correcto');
+            if (email == "chriss@gmail.com") {
+                window.location.replace("admin.html");
+            } else {
+                window.location.replace("vendedor.html");
+            }
+
         });
 });
