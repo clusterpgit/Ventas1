@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,6 +33,40 @@
 
 
 
+    <!--FIREBASE SCRIPTS-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!--agregando la autenticacion de firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB5Bldl7MFaXtyb8AUG3JyPx4eDkoCChZk",
+            authDomain: "ventas1-firebase.firebaseapp.com",
+            databaseURL: "https://ventas1-firebase.firebaseio.com",
+            projectId: "ventas1-firebase",
+            storageBucket: "ventas1-firebase.appspot.com",
+            messagingSenderId: "439048559331",
+            appId: "1:439048559331:web:bcfc97eab779c42f8203d6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //constante para acceder a la auth de firebase
+        const auth = firebase.auth();
+    </script>
+
+
+    <!--CODIGO PERSONALIZADO-->
+    <script src="main.js"></script>
 
 </body>
 
