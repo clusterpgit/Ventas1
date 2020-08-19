@@ -39,3 +39,15 @@ auth2.onAuthStateChanged(user => {
         console.log('sesion cerrada');
     }
 });
+
+//cerrar sesion
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', e => {
+    e.preventDefault();
+
+    auth2.signOut().then(() => {
+        console.log('Sesion Cerrada');
+        window.location.replace("login.html");
+    });
+
+});
