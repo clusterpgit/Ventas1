@@ -6,6 +6,20 @@
   font-family: Arial
 }
 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color:white;
+  font-family: "Arial";
+  transform: translate(-50%, -50%);
+}
+
+.centered > a {
+
+}
+
 
 @media (min-width: 1200px) {
  	 .jumbotron{
