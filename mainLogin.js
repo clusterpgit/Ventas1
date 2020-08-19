@@ -13,7 +13,7 @@ loginForm.addEventListener('submit', (e) => {
         .signInWithEmailAndPassword(email, password)
         .then(userCredential => {
 
-            alert('Usuario correcto');
+            alert('Bienvenido Administrador');
             if (email == "admin@gmail.com") {
                 window.location.replace("admin.html");
             } else {
