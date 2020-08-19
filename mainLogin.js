@@ -14,7 +14,7 @@ loginForm.addEventListener('submit', (e) => {
         .then(userCredential => {
 
             alert('Usuario correcto');
-            if (email == "chriss@gmail.com") {
+            if (email == "admin@gmail.com") {
                 window.location.replace("admin.html");
             } else {
                 window.location.replace("vendedor.html");
