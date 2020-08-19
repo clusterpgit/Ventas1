@@ -1,3 +1,4 @@
+// constante para registro
 const singupForm = document.querySelector('#singup-form');
 
 singupForm.addEventListener('submit', (e) => {
@@ -5,8 +6,6 @@ singupForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const email = document.querySelector('#singup-email').value;
-
-
     const password = document.querySelector('#singup-password').value;
 
     //metodo para crear el usuario
@@ -15,7 +14,7 @@ singupForm.addEventListener('submit', (e) => {
         .createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
             console.log('registrado');
-            alert('Vendedor Registrado');
+            //alert('Vendedor Registrado');
         });
 
 });

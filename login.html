@@ -19,20 +19,52 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" id="login-form">
 
         <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-
+        <div class="form-group">
+            <input type="text" id="login-email" class="form-control" placeholder="Email" required>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
+        <div class="form-group">
+            <input type="password" id="login-password" class="form-control" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
     </form>
 
+    <!--FIREBASE SCRIPTS-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!--agregando la autenticacion de firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB5Bldl7MFaXtyb8AUG3JyPx4eDkoCChZk",
+            authDomain: "ventas1-firebase.firebaseapp.com",
+            databaseURL: "https://ventas1-firebase.firebaseio.com",
+            projectId: "ventas1-firebase",
+            storageBucket: "ventas1-firebase.appspot.com",
+            messagingSenderId: "439048559331",
+            appId: "1:439048559331:web:bcfc97eab779c42f8203d6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //constante para acceder a la auth de firebase
+        const auth2 = firebase.auth();
+    </script>
+
+
+    <!--CODIGO PERSONALIZADO-->
+    <script src="mainLogin.js"></script>
 
 </body>
 
