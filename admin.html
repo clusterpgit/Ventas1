@@ -66,16 +66,18 @@
                 <div class="container-fluid">
                     <h1>Stock Products</h1>
                     <div class="table-responsive">
-                        <table class="table table-striped table-sm">
+                        <table class="table table-striped table-sm" id="tblProductos">
+
                             <thead>
                                 <tr>
-                                    <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Size</th>
-                                    <th>Color</th>
-                                    <th>Stock</th>
+                                    <th>Producto</th>
+                                    <th>Descripcion</th>
+                                    <th>Categoria</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
                                 </tr>
                             </thead>
+
 
                         </table>
                     </div>
@@ -88,6 +90,43 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="js/dashboard.js"></script>
+
+
+    <!--FIREBASE SCRIPTS-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!--agregando la autenticacion de firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB5Bldl7MFaXtyb8AUG3JyPx4eDkoCChZk",
+            authDomain: "ventas1-firebase.firebaseapp.com",
+            databaseURL: "https://ventas1-firebase.firebaseio.com",
+            projectId: "ventas1-firebase",
+            storageBucket: "ventas1-firebase.appspot.com",
+            messagingSenderId: "439048559331",
+            appId: "1:439048559331:web:bcfc97eab779c42f8203d6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //constante para acceder a la auth de firebase
+        const auth2 = firebase.auth();
+        const fs = firebase.firestore();
+    </script>
+
+    <!--CODIGO PERSONALIZADO-->
+    <script src="admin.js"></script>
 </body>
 </body>
 
