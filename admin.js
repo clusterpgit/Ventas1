@@ -14,6 +14,7 @@ const setUpProductos = data => {
                     <td>${post.Categoria}</td>
                     <td>${post.Cantidad}</td>
                     <td>${post.Precio}</td>
+                    <td><h4>Hola</h4></td>
                 </tr>
             `;
             html += contenido;
@@ -48,7 +49,7 @@ const setCategorias = data => {
 
 //este metodo es para ver si esta iniciada la sesion para mostrar datos
 //si no esta iniciada la sesion, entonces no va a mostrar datos
-auth2.onAuthStateChanged(user => {
+auth2.onAuthStateChanged(user => { // este metodo es para jalar datos de la BD
     if (user) {
         console.log('sesion iniciada');
         fs.collection('producto')
