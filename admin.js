@@ -2,12 +2,13 @@ const productTable = document.querySelector('#tblProductos');
 const setUpProductos = data => {
     if (data.length) { //.lenght para ver si hay datos en la BD
         let html = ''; //doc.NOMBRE CAMPO EN LA TABLA
-        html += '<thead> <tr> <th>Producto</th> <th>Descripcion</th> <th>Categoria</th> <th>Cantidad</th> <th>Precio</th> </tr> </thead>';
+        html += '<thead> <tr>  <th>Codigo</th>   <th>Producto</th> <th>Descripcion</th> <th>Categoria</th> <th>Cantidad</th> <th>Precio</th> </tr> </thead>';
         data.forEach(doc => {
             const post = doc.data();
             console.log(post);
             const contenido = `
                 <tr>
+                    <td>${post.Codigo}</td> 
                     <td>${post.NombreP}</td> 
                     <td>${post.Descripcion}</td>
                     <td>${post.Categoria}</td>
@@ -24,6 +25,13 @@ const setUpProductos = data => {
     }
 };
 
+//llenar categorias en el select o listbox
+const listaCat = document.querySelector('#lista-categorias');
+//const setCategorias = dataDos => {
+
+//};
+
+
 //este metodo es para ver si esta iniciada la sesion para mostrar datos
 //si no esta iniciada la sesion, entonces no va a mostrar datos
 auth2.onAuthStateChanged(user => {
@@ -37,8 +45,12 @@ auth2.onAuthStateChanged(user => {
             });
     } else {
         console.log('sesion cerrada');
+        alert('Debe iniciar sesion');
+        window.location.replace("index.html");
     }
 });
+
+
 
 //cerrar sesion
 const logout = document.querySelector('#logout');
