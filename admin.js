@@ -27,9 +27,23 @@ const setUpProductos = data => {
 
 //llenar categorias en el select o listbox
 const listaCat = document.querySelector('#lista-categorias');
-//const setCategorias = dataDos => {
+const setCategorias = data => {
+    if (data.length) {
+        let html = "";
+        data.forEach(doc => {
+            const post = doc.data();
+            console.log(post);
+            const contenido = ` 
+                    <option >${post.Categoria}</option>
+            `;
+            html += contenido;
+        });
+        listaCat.innerHTML = html;
+    } else {
 
-//};
+        alert('No hay datos en BD');
+    }
+};
 
 
 //este metodo es para ver si esta iniciada la sesion para mostrar datos
@@ -42,10 +56,18 @@ auth2.onAuthStateChanged(user => {
             .then((snapshot) => {
                 console.log(snapshot.docs); // este snapshot.docs me devuelve los datos que estan en la BD en array
                 setUpProductos(snapshot.docs);
+                setCategorias(snapshot.docs);
             });
+        fs.collection('categoria')
+            .get()
+            .then((snapshot) => {
+                console.log(snapshot.docs); // este snapshot.docs me devuelve los datos que estan en la BD en array
+                setCategorias(snapshot.docs);
+            });
+
     } else {
         console.log('sesion cerrada');
-        alert('Debe iniciar sesion');
+        //alert('Debe iniciar sesion');
         window.location.replace("index.html");
     }
 });
