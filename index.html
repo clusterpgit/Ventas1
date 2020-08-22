@@ -1,116 +1,158 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
-	<title>Confecciones Lisga: Ropa, Zapatos , Accesiorios y mas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Confecciones Lisga: Ropa, Zapatos , Accesiorios y mas</title>
 
 </head>
+
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  			<a class="navbar-brand" href="#">Confecciones Lisga</a>
- 			 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Confecciones Lisga</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
   			</button>
 
-  			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-    			<ul class="navbar-nav mr-auto">
-    			</ul>
-    			<form class="form-inline my-2 my-lg-0">
-      				<a href="login.html" class="btn btn-primary my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">Iniciar Sesion</a>
-    			</form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="login.html" class="btn btn-primary my-2 my-sm-0" data-toggle="modal" data-target="#loginModal">Iniciar Sesion</a>
+                </form>
 
-   				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  					<div class="modal-dialog">
-    					<div class="modal-content">
-      						<div class="modal-header">
-        						<h5 class="modal-title" id="exampleModalLabel">Iniciar Sesion</h5>
-        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <!-- Modal -->
+                <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesion</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           						<span aria-hidden="true">&times;</span>
         						</button>
-      						</div>
-      						<div class="modal-body">
-        						<form class="form-signin" id="login-form">
-        							<div class="form-group">
-            							<input type="text" id="login-email" class="form-control" placeholder="Email" required>
-        							</div>
-        							<div class="form-group">
-            							<input type="password" id="login-password" class="form-control" placeholder="Password" required>
-        							</div>
-        							
-    							</form>
-      						<div class="modal-footer">
-      								<button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
-        							<button type="button"  class="btn btn-danger btn-lg btn-block" data-dismiss="modal">Cancelar</button>
-        							
-      						</div>
-    					</div>
-  					</div>
-				</div>
-  			</div>
-		</nav>
-	</header>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-signin" id="login-form">
+                                    <div class="form-group">
+                                        <input type="text" id="login-email" class="form-control" placeholder="Email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" id="login-password" class="form-control" placeholder="Password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar Sesión</button>
+                                </form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal">Cancelar</button>
 
-	
-		<div class="jumbotron jumbotron-fluid">
-			<div class="container-fluid">
-				<div class="info-text">
-					<h1>Articulos de Calidad</h1>
-					<a class="btn btn-primary btn-lg" href="#" role="button">Conocer mas</a>	
-				</div>
-				
-			</div>
-  			
-		
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+    </header>
+
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid">
+            <div class="info-text">
+                <h1>Articulos de Calidad</h1>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Conocer mas</a>
+            </div>
+
+        </div>
+
+
     </div>
-	<div>
-    	<div class="container">
-      		<div class="row">
-        	   
-				<div class="col-lg-4 col-md-6 col-s-12 col-xs-12">
-				 	<div class="card">
-				 		 <img src="images/bg-2.jpg" class="card-img-top" alt="Clothes">
-				 		 <div class="centered">
-				 		 	<a href="#">Ropa</a>
-				 		 </div>
-				 	</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-s-12 col-xs-12">
-					<div class="card">
-				 		<img src="images/bg-3.jpg" class="card-img-top" alt="Shoes">
-				 		<div class="centered">
-				 		 	<a href="#">Zapatos</a>
-				 		 </div>
-				 	</div>
-				</div>
-				<div class="col-lg-4 col-md-12 col-s-12 col-xs-12">
-					<div class="card">
-				 		<img src="images/bg-4.jpg" class="card-img-top" alt="Accesories">
-				 		<div class="centered">
-				 		 	<a href="#">Accesorios</a>
-				 		 </div>
-				 	</div>
-				</div>
-        	</div>
+    <div>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 col-s-12 col-xs-12">
+                    <div class="card">
+                        <img src="images/bg-2.jpg" class="card-img-top" alt="Clothes">
+                        <div class="centered">
+                            <a href="#">Ropa</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-s-12 col-xs-12">
+                    <div class="card">
+                        <img src="images/bg-3.jpg" class="card-img-top" alt="Shoes">
+                        <div class="centered">
+                            <a href="#">Zapatos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-s-12 col-xs-12">
+                    <div class="card">
+                        <img src="images/bg-4.jpg" class="card-img-top" alt="Accesories">
+                        <div class="centered">
+                            <a href="#">Accesorios</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-	<footer class="panel-footer">
-		<div class="container">
-			 <div class="row">
+    <footer class="panel-footer">
+        <div class="container">
+            <div class="row">
 
-			 </div>
-			  <div class="text-center">Powered By:<a href="#"><img src="images/cp_logo_dark_sm.png"></a></div>
-		</div>
-	</footer>
-	<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>	
+            </div>
+            <div class="text-center">Powered By:
+                <a href="#"><img src="images/cp_logo_dark_sm.png"></a>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+    <!--FIREBASE SCRIPTS-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!--agregando la autenticacion de firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB5Bldl7MFaXtyb8AUG3JyPx4eDkoCChZk",
+            authDomain: "ventas1-firebase.firebaseapp.com",
+            databaseURL: "https://ventas1-firebase.firebaseio.com",
+            projectId: "ventas1-firebase",
+            storageBucket: "ventas1-firebase.appspot.com",
+            messagingSenderId: "439048559331",
+            appId: "1:439048559331:web:bcfc97eab779c42f8203d6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //constante para acceder a la auth de firebase
+        const auth2 = firebase.auth();
+    </script>
+
+
+
+
+    <!-- Codigo JS -->
+    <script src="mainPrincipal.js"></script>
 </body>
+
 </html>
