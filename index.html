@@ -6,33 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
 	<title>Clothes Store: Accesories and More</title>
 
 </head>
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Company Name</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  			<a class="navbar-brand" href="#">Confecciones Lisga</a>
+ 			 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  			</button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <a href="index.html" class="btn btn-primary my-2 my-sm-0">Login</a>
-    </form>
-  </div>
-</nav>
+  			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    			<ul class="navbar-nav mr-auto">
+    			</ul>
+    			<form class="form-inline my-2 my-lg-0">
+      				<a href="login.html" class="btn btn-primary my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">Iniciar Sesion</a>
+    			</form>
+
+   				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  					<div class="modal-dialog">
+    					<div class="modal-content">
+      						<div class="modal-header">
+        						<h5 class="modal-title" id="exampleModalLabel">Iniciar Sesion</h5>
+        						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          						<span aria-hidden="true">&times;</span>
+        						</button>
+      						</div>
+      						<div class="modal-body">
+        						<form class="form-signin" id="login-form">
+        							<div class="form-group">
+            							<input type="text" id="login-email" class="form-control" placeholder="Email" required>
+        							</div>
+        							<div class="form-group">
+            							<input type="password" id="login-password" class="form-control" placeholder="Password" required>
+        							</div>
+        							
+    							</form>
+      						<div class="modal-footer">
+      								<button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
+        							<button type="button"  class="btn btn-danger btn-lg btn-block" data-dismiss="modal">Cancelar</button>
+        							
+      						</div>
+    					</div>
+  					</div>
+				</div>
+  			</div>
+		</nav>
 	</header>
 
-	<div class="jumbotron jumbotron-fluid">
-  		<div class="container">
-    		
-  		</div>
-	</div>
-
+	
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container-fluid">
+				<div class="info-text">
+					<h1>Articulos de Calidad</h1>
+					<a class="btn btn-primary btn-lg" href="#" role="button">Conocer mas</a>	
+				</div>
+				
+			</div>
+  			
+		
+    </div>
 	<div>
     	<div class="container">
       		<div class="row">
@@ -41,7 +78,7 @@
 				 	<div class="card">
 				 		 <img src="images/bg-2.jpg" class="card-img-top" alt="Clothes">
 				 		 <div class="centered">
-				 		 	<a href="#">Clothes</a>
+				 		 	<a href="#">Ropa</a>
 				 		 </div>
 				 	</div>
 				</div>
@@ -49,7 +86,7 @@
 					<div class="card">
 				 		<img src="images/bg-3.jpg" class="card-img-top" alt="Shoes">
 				 		<div class="centered">
-				 		 	<a href="#">Shoes</a>
+				 		 	<a href="#">Zapatos</a>
 				 		 </div>
 				 	</div>
 				</div>
@@ -57,7 +94,7 @@
 					<div class="card">
 				 		<img src="images/bg-4.jpg" class="card-img-top" alt="Accesories">
 				 		<div class="centered">
-				 		 	<a href="#">Accesories</a>
+				 		 	<a href="#">Accesorios</a>
 				 		 </div>
 				 	</div>
 				</div>
