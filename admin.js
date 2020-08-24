@@ -5,7 +5,7 @@ const setUpProductos = data => {
         html += '<thead> <tr>  <th>Codigo</th>   <th>Producto</th> <th>Descripcion</th> <th>Categoria</th> <th>Cantidad</th> <th>Precio</th> </tr> </thead>';
         data.forEach(doc => {
             const post = doc.data();
-            console.log(post);
+            //console.log(post);
             const contenido = `
                 <tr>
                     <td>${post.Codigo}</td> 
@@ -33,7 +33,7 @@ const setCategorias = data => {
         let html = "";
         data.forEach(doc => {
             const post = doc.data();
-            console.log(post);
+            // console.log(post);
             const contenido = ` 
                     <option >${post.Categoria}</option>
             `;
@@ -55,14 +55,14 @@ auth2.onAuthStateChanged(user => { // este metodo es para jalar datos de la BD
         fs.collection('producto')
             .get()
             .then((snapshot) => {
-                console.log(snapshot.docs); // este snapshot.docs me devuelve los datos que estan en la BD en array
+                //console.log(snapshot.docs); // este snapshot.docs me devuelve los datos que estan en la BD en array
                 setUpProductos(snapshot.docs);
                 setCategorias(snapshot.docs);
             });
         fs.collection('categoria')
             .get()
             .then((snapshot) => {
-                console.log(snapshot.docs); // este snapshot.docs me devuelve los datos que estan en la BD en array
+                //console.log(snapshot.docs); // este snapshot.docs me devuelve los datos que estan en la BD en array
                 setCategorias(snapshot.docs);
             });
 
@@ -85,4 +85,33 @@ logout.addEventListener('click', e => {
         window.location.replace("login.html");
     });
 
+});
+
+
+
+//INSERTAR PRODUCTO
+const formInsertar = document.getElementById('form-insertarProducto');
+
+formInsertar.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const producto = formInsertar['txt-producto'].value;
+    const descripcion = formInsertar['txt-descripcion'].value;
+    const categoria = formInsertar['lista-categorias'].value;
+    const cantidad = formInsertar['txt-cantidad'].value;
+    const precio = formInsertar['txt-precio'].value;
+    //alert('insertara');
+
+    // ahora vamos a enviar datos a la BD con la variable creada en el admin.html 
+    //const fs = firebase.firestore(); -> Esta variable se creo en el admin.html 
+
+    const response = await fs.collection('producto').doc().set({
+        NombreP: producto,
+        Descripcion: descripcion,
+        Categoria: categoria,
+        Cantidad: cantidad,
+        Precio: precio
+
+    });
+    console.log(producto, descripcion, categoria, cantidad, precio);
+    location.reload();
 });
