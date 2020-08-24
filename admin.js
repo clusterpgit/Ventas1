@@ -115,3 +115,16 @@ formInsertar.addEventListener('submit', async(e) => {
     console.log(producto, descripcion, categoria, cantidad, precio);
     location.reload();
 });
+
+//insertar nueva categoria
+const formInsertarCategoria = document.getElementById('form-registrarCategoria');
+
+formInsertarCategoria.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const nuevaCat = formInsertarCategoria['txt-nuevaCategoria'].value;
+
+    const response = await fs.collection('categoria').doc().set({
+        Categoria: nuevaCat
+    });
+    location.reload();
+});
