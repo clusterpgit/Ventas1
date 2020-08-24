@@ -8,13 +8,14 @@ const setUpProductos = data => {
             //console.log(post);
             const contenido = `
                 <tr>
-                    <td>${post.Codigo}</td> 
+                    <th scope="row">${post.Codigo}</th> 
                     <td>${post.NombreP}</td> 
                     <td>${post.Descripcion}</td>
                     <td>${post.Categoria}</td>
                     <td>${post.Cantidad}</td>
                     <td>${post.Precio}</td>
-                    <td><h4>Hola</h4></td>
+                    <td><button class="btn btn-danger" onclick="delete_f('${post.Codigo}')">Eliminar</button>
+                    <button class="btn btn-warning">Editar</button></td>
                 </tr>
             `;
             html += contenido;
@@ -128,3 +129,26 @@ formInsertarCategoria.addEventListener('submit', async(e) => {
     });
     location.reload();
 });
+
+
+//eliminar producto
+function delete_f(id) {
+
+    console.log(id)
+    //location.reload();
+    let collectionRef = fs.collection('producto');
+    collectionRef.where("Codigo", "==", id)
+    .get()
+    .then(querySnapshot => {
+        querySnapshot.forEach((doc) => {
+            doc.ref.delete().then(() => {
+                console.log("Document successfully deleted!");
+            }).catch(function(error) {
+            console.error("Error removing document: ", error);
+            });
+        });
+    }).catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+
+}
