@@ -50,7 +50,7 @@ const setCategorias = data => {
 
 //este metodo es para ver si esta iniciada la sesion para mostrar datos
 //si no esta iniciada la sesion, entonces no va a mostrar datos
-auth2.onAuthStateChanged(user => { // este metodo es para jalar datos de la BD
+auth2.onAuthStateChanged(user => { // este metodo es para jalar datos de la BD si y solo si esta la sesion creada
     if (user) {
         console.log('sesion iniciada');
         fs.collection('producto')
@@ -134,21 +134,21 @@ formInsertarCategoria.addEventListener('submit', async(e) => {
 //eliminar producto
 function delete_f(id) {
 
-    console.log(id)
+    console.log(id);
     //location.reload();
     let collectionRef = fs.collection('producto');
     collectionRef.where("Codigo", "==", id)
-    .get()
-    .then(querySnapshot => {
-        querySnapshot.forEach((doc) => {
-            doc.ref.delete().then(() => {
-                console.log("Document successfully deleted!");
-            }).catch(function(error) {
-            console.error("Error removing document: ", error);
+        .get()
+        .then(querySnapshot => {
+            querySnapshot.forEach((doc) => {
+                doc.ref.delete().then(() => {
+                    console.log("Document successfully deleted!");
+                }).catch(function(error) {
+                    console.error("Error removing document: ", error);
+                });
             });
+        }).catch(function(error) {
+            console.log("Error getting documents: ", error);
         });
-    }).catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
 
 }
