@@ -6,6 +6,8 @@ const btnActualizar = document.querySelector('#btn-actualizar');
 const getProductos = () => fs.collection('producto').get();
 const getCategorias = () => fs.collection('categoria').get();
 
+const getProducto = (id) => fs.collection('producto').doc(id).get(); // esto es para el editar
+
 btnActualizar.addEventListener('click', (e) => {
     e.preventDefault();
     window.reload();
@@ -33,7 +35,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Cantidad}</td>
             <td>${prod.Precio}</td>
             <td><button class="btn btn-primary btn-delete" data-id="${prod.id}"  >Eliminar</button> 
-            <button class="btn btn-secondary ">Editar</button></td>
+            <button class="btn btn-secondary btn-edit" data-id="${prod.id}">Editar</button></td>
         </tr>
         `;
         const btnsDelete = document.querySelectorAll('.btn-delete');
@@ -45,26 +47,18 @@ window.addEventListener('DOMContentLoaded', async(e) => {
                 location.reload();
             });
         });
-        /*const contenidoP = ` 
-            <tr>
-                <th scope="row">${prod.Codigo}</th> 
-                <td>${prod.NombreP}</td> 
-                <td>${prod.Descripcion}</td>
-                <td>${prod.Categoria}</td>
-                <td>${prod.Cantidad}</td>
-                <td>${prod.Precio}</td>
-                <td><button class="btn btn-primary btn-delete"  >Eliminar</button> 
-                <button class="btn btn-secondary ">Editar</button></td>
-            </tr>
-        `;
-        htmlTablaProducto += contenidoP;*/
+
+        const btnsEdit = document.querySelectorAll('.btn-edit');
+        btnsEdit.forEach(btn => {
+            btn.addEventListener('click', async(e) => {
+                console.log('editando');
+                const productoE = await getProducto(e.target.dataset.id);
+                console.log(productoE);
+            });
+        });
 
 
     });
-    //productTable.innerHTML = htmlTablaProducto;
-
-
-
 
 
     //ahora cargar categorias categorias
