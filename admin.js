@@ -1,10 +1,21 @@
 const productTable = document.querySelector('#tblProductos');
+
+const eliminarP = cod => {
+    alert('estamos aqui');
+    console.log('Codigo que vamos a eliminar:');
+    fs.collection('producto').doc(cod).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+};
+
 const setUpProductos = data => {
     if (data.length) { //.lenght para ver si hay datos en la BD
         let html = ''; //doc.NOMBRE CAMPO EN LA TABLA
         html += '<thead> <tr>  <th>Codigo</th>   <th>Producto</th> <th>Descripcion</th> <th>Categoria</th> <th>Cantidad</th> <th>Precio</th> </tr> </thead>';
         data.forEach(doc => {
-            const post = doc.data();
+            const post = doc.data(); // post es el registro completo de lo que obtiene de la bd
             //console.log(post);
             const contenido = `
                 <tr>
@@ -14,13 +25,24 @@ const setUpProductos = data => {
                     <td>${post.Categoria}</td>
                     <td>${post.Cantidad}</td>
                     <td>${post.Precio}</td>
-                    <td><button class="btn btn-danger" onclick="delete_f('${post.Codigo}')">Eliminar</button>
-                    <button class="btn btn-warning">Editar</button></td>
+                    <td><button class="btn btn-danger btn-delete" >Eliminar</button>
+                    <button class="btn btn-info btnEditar">Editar</button></td>
                 </tr>
             `;
             html += contenido;
+
+
+
         });
         productTable.innerHTML = html;
+        const botonesEliminar = document.querySelectorAll('.btn-delete');
+        console.log(botonesEliminar);
+        botonesEliminar.forEach(btn => {
+            btn.addEventListener("click", () => {
+                alert('Click');
+                console.log('Clicked');
+            });
+        });
     } else {
 
         alert('No hay datos en BD');
