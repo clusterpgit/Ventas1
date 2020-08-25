@@ -101,3 +101,9 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+.modal-title{
+  margin-right: 50px;
+  margin-left: 50px;
+
+}
