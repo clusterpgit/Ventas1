@@ -8,6 +8,11 @@ const getCategorias = () => fs.collection('categoria').get();
 
 const getProducto = (id) => fs.collection('producto').doc(id).get(); // esto es para el editar
 
+const updateProducto = (id, productoEditado) =>
+    fs.collection('producto').doc(id).update(productoEditado);
+
+let editStatus = false;
+let varId = '';
 btnActualizar.addEventListener('click', (e) => {
     e.preventDefault();
     window.reload();
@@ -18,6 +23,7 @@ btnActualizar.addEventListener('click', (e) => {
 const deleteProducto = id => fs.collection("producto").doc(id).delete();
 
 window.addEventListener('DOMContentLoaded', async(e) => {
+
     const querySnapshot = await getProductos();
     let htmlTablaProducto = "";
     htmlTablaProducto += '<thead> <tr>  <th>Codigo</th>   <th>Producto</th> <th>Descripcion</th> <th>Categoria</th> <th>Cantidad</th> <th>Precio</th> </tr> </thead>';
@@ -53,7 +59,16 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             btn.addEventListener('click', async(e) => {
                 console.log('editando');
                 const productoE = await getProducto(e.target.dataset.id);
-                console.log(productoE);
+
+                editStatus = true;
+                varId = productoE.id;
+                formInsertar['txt-producto'].value = productoE.data().NombreP;
+                formInsertar['txt-descripcion'].value = productoE.data().Descripcion;
+                formInsertar['lista-categorias'].value = productoE.data().Categoria;
+                formInsertar['txt-cantidad'].value = productoE.data().Cantidad;
+                formInsertar['txt-precio'].value = productoE.data().Precio;
+
+                formInsertar['btn-Producto'].innerText = 'Update';
             });
         });
 
@@ -76,6 +91,55 @@ window.addEventListener('DOMContentLoaded', async(e) => {
 });
 
 
+//INSERTAR PRODUCTO
+const formInsertar = document.getElementById('form-insertarProducto');
+
+formInsertar.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const producto = formInsertar['txt-producto'].value;
+    const descripcion = formInsertar['txt-descripcion'].value;
+    const categoria = formInsertar['lista-categorias'].value;
+    const cantidad = formInsertar['txt-cantidad'].value;
+    const precio = formInsertar['txt-precio'].value;
+    //alert('insertara');
+
+    // ahora vamos a enviar datos a la BD con la variable creada en el admin.html 
+    //const fs = firebase.firestore(); -> Esta variable se creo en el admin.html 
+    if (!editStatus) {
+        const response = await fs.collection('producto').doc().set({
+            NombreP: producto,
+            Descripcion: descripcion,
+            Categoria: categoria,
+            Cantidad: cantidad,
+            Precio: precio
+
+        });
+    } else {
+        await updateProducto(varId, {
+            NombreP: producto,
+            Descripcion: descripcion,
+            Categoria: categoria,
+            Cantidad: cantidad,
+            Precio: precio
+        });
+    }
+
+    console.log(producto, descripcion, categoria, cantidad, precio);
+    location.reload();
+});
+
+//insertar nueva categoria
+const formInsertarCategoria = document.getElementById('form-registrarCategoria');
+
+formInsertarCategoria.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const nuevaCat = formInsertarCategoria['txt-nuevaCategoria'].value;
+
+    const response = await fs.collection('categoria').doc().set({
+        Categoria: nuevaCat
+    });
+    location.reload();
+});
 
 
 
@@ -112,45 +176,6 @@ logout.addEventListener('click', e => {
 
 
 
-//INSERTAR PRODUCTO
-const formInsertar = document.getElementById('form-insertarProducto');
-
-formInsertar.addEventListener('submit', async(e) => {
-    e.preventDefault();
-    const producto = formInsertar['txt-producto'].value;
-    const descripcion = formInsertar['txt-descripcion'].value;
-    const categoria = formInsertar['lista-categorias'].value;
-    const cantidad = formInsertar['txt-cantidad'].value;
-    const precio = formInsertar['txt-precio'].value;
-    //alert('insertara');
-
-    // ahora vamos a enviar datos a la BD con la variable creada en el admin.html 
-    //const fs = firebase.firestore(); -> Esta variable se creo en el admin.html 
-
-    const response = await fs.collection('producto').doc().set({
-        NombreP: producto,
-        Descripcion: descripcion,
-        Categoria: categoria,
-        Cantidad: cantidad,
-        Precio: precio
-
-    });
-    console.log(producto, descripcion, categoria, cantidad, precio);
-    location.reload();
-});
-
-//insertar nueva categoria
-const formInsertarCategoria = document.getElementById('form-registrarCategoria');
-
-formInsertarCategoria.addEventListener('submit', async(e) => {
-    e.preventDefault();
-    const nuevaCat = formInsertarCategoria['txt-nuevaCategoria'].value;
-
-    const response = await fs.collection('categoria').doc().set({
-        Categoria: nuevaCat
-    });
-    location.reload();
-});
 
 
 //eliminar producto
