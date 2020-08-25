@@ -1,7 +1,6 @@
 const productTable = document.querySelector('#tblProductos');
 //llenar categorias en el select o listbox
 const listaCat = document.querySelector('#lista-categorias');
-const btnActualizar = document.querySelector('#btn-actualizar');
 
 const getProductos = () => fs.collection('producto').get();
 const getCategorias = () => fs.collection('categoria').get();
@@ -13,9 +12,14 @@ const updateProducto = (id, productoEditado) =>
 
 let editStatus = false;
 let varId = '';
-btnActualizar.addEventListener('click', (e) => {
+
+
+const btnCancelar = document.querySelector('#btn-Cerrar');
+
+btnCancelar.addEventListener('click', e => {
     e.preventDefault();
-    window.reload();
+    console.log('cancelando');
+    location.reload();
 });
 
 //DELETE
@@ -41,7 +45,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Cantidad}</td>
             <td>${prod.Precio}</td>
             <td><button class="btn btn-primary btn-delete" data-id="${prod.id}"  >Eliminar</button> 
-            <button class="btn btn-secondary btn-edit" data-id="${prod.id}">Editar</button></td>
+            <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal">Editar</button></td>
         </tr>
         `;
         const btnsDelete = document.querySelectorAll('.btn-delete');
