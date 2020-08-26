@@ -2,8 +2,11 @@ const productTable = document.querySelector('#tblProductos');
 //llenar categorias en el select o listbox
 const listaCat = document.querySelector('#lista-categorias');
 
-const getProductos = () => fs.collection('producto').get();
-const getCategorias = () => fs.collection('categoria').get();
+const getProductos = () => fs.collection('producto').orderBy("NombreP", "asc").get();
+
+
+const getCategorias = () => fs.collection('categoria').orderBy("Categoria", "asc").get();
+
 
 const getProducto = (id) => fs.collection('producto').doc(id).get(); // esto es para el editar
 
@@ -11,7 +14,7 @@ const updateProducto = (id, productoEditado) =>
     fs.collection('producto').doc(id).update(productoEditado);
 
 
-const consultaCodigo = () => fs.collection('producto').orderBy('Codigo', 'desc').limit(1).get();
+const consultaCodigo = () => fs.collection('producto').orderBy('Codigo', 'desc').limit(1).get(); //consulta para el ultimo codigo ingresado
 
 
 let editStatus = false;
@@ -110,21 +113,13 @@ formInsertar.addEventListener('submit', async(e) => {
     const cantidad = formInsertar['txt-cantidad'].value;
     const precio = formInsertar['txt-precio'].value;
 
-    //alert('insertara');
-
-    //codigo de producto
-
-
-
-
-
     // ahora vamos a enviar datos a la BD con la variable creada en el admin.html 
     //const fs = firebase.firestore(); -> Esta variable se creo en el admin.html 
     if (!editStatus) { //aqui agregamos
 
-        const querySnapshot = await consultaCodigo();
+        const querySnapshot = await consultaCodigo(); //solicitamos la consulta
         // si hay productoss
-        if (querySnapshot.size == 0) {
+        if (querySnapshot.size == 0) { // vemos si hay productos
             console.log('no hay datos en Producto');
 
         } else {
@@ -134,7 +129,7 @@ formInsertar.addEventListener('submit', async(e) => {
                 console.log('ultimo codigo:');
                 console.log(resultado.Codigo);
                 // alert(resultado.Codigo);
-                codigoU = resultado.Codigo + 1;
+                codigoU = resultado.Codigo + 1; // al ultimo codigo le sumamos uno para que se cumpla el correlativo
             });
         }
 
@@ -144,7 +139,7 @@ formInsertar.addEventListener('submit', async(e) => {
             Categoria: categoria,
             Cantidad: cantidad,
             Precio: precio,
-            Codigo: codigoU
+            Codigo: codigoU // si de arriba cayo en el else, ahi le suma 1 al codigoU
 
         });
 
