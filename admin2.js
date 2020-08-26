@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Categoria}</td>
             <td>${prod.Cantidad}</td>
             <td>${prod.Precio}</td>
-            <td><button class="btn btn-primary btn-delete" data-id="${prod.id}"  >Eliminar</button> 
+            <td><button class="btn btn-danger btn-delete" data-id="${prod.id}"  >Eliminar</button> 
             <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal">Editar</button></td>
         </tr>
         `;
