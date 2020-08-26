@@ -10,9 +10,13 @@ const getProducto = (id) => fs.collection('producto').doc(id).get(); // esto es 
 const updateProducto = (id, productoEditado) =>
     fs.collection('producto').doc(id).update(productoEditado);
 
+
+const consultaCodigo = () => fs.collection('producto').orderBy('Codigo', 'desc').limit(1).get();
+
+
 let editStatus = false;
 let varId = '';
-
+let codigoU = 100;
 
 const btnCancelar = document.querySelector('#btn-Cerrar');
 
@@ -105,20 +109,47 @@ formInsertar.addEventListener('submit', async(e) => {
     const categoria = formInsertar['lista-categorias'].value;
     const cantidad = formInsertar['txt-cantidad'].value;
     const precio = formInsertar['txt-precio'].value;
+
     //alert('insertara');
+
+    //codigo de producto
+
+
+
+
 
     // ahora vamos a enviar datos a la BD con la variable creada en el admin.html 
     //const fs = firebase.firestore(); -> Esta variable se creo en el admin.html 
-    if (!editStatus) {
+    if (!editStatus) { //aqui agregamos
+
+        const querySnapshot = await consultaCodigo();
+        // si hay productoss
+        if (querySnapshot.size == 0) {
+            console.log('no hay datos en Producto');
+
+        } else {
+            console.log('si hay datos en Producto');
+            querySnapshot.forEach(doc => {
+                const resultado = doc.data();
+                console.log('ultimo codigo:');
+                console.log(resultado.Codigo);
+                // alert(resultado.Codigo);
+                codigoU = resultado.Codigo + 1;
+            });
+        }
+
         const response = await fs.collection('producto').doc().set({
             NombreP: producto,
             Descripcion: descripcion,
             Categoria: categoria,
             Cantidad: cantidad,
-            Precio: precio
+            Precio: precio,
+            Codigo: codigoU
 
         });
-    } else {
+
+
+    } else { // aqui editamos
         await updateProducto(varId, {
             NombreP: producto,
             Descripcion: descripcion,
@@ -128,7 +159,29 @@ formInsertar.addEventListener('submit', async(e) => {
         });
     }
 
-    console.log(producto, descripcion, categoria, cantidad, precio);
+    //console.log(producto, descripcion, categoria, cantidad, precio);
+
+
+
+
+    /*
+    categ.forEach(doc => {
+        //console.log(doc.data());
+        const categoria = doc.data();
+        const contenido = ` 
+                    <option >${categoria.Categoria}</option>
+            `;
+        htmlCat += contenido;
+    });
+    */
+    /*codigoUltimo.orderBy('Codigo').get();
+    codigoUltimo.forEach(doc => {
+        //RECORRER Y VER QUE PEX
+        //https://googleapis.dev/nodejs/firestore/latest/Query.html
+        //https://stackoverflow.com/questions/48097696/how-to-combine-firestore-orderby-desc-with-startafter-cursor
+
+    });*/
+
     location.reload();
 });
 
@@ -177,8 +230,6 @@ logout.addEventListener('click', e => {
     });
 
 });
-
-
 
 
 
