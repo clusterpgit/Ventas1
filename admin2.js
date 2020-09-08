@@ -52,7 +52,8 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Cantidad}</td>
             <td>${prod.Precio}</td>
             <td><button class="btn btn-danger btn-delete" data-id="${prod.id}"  >Eliminar</button> 
-            <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal">Editar</button></td>
+            <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal">Editar</button>
+            <button class="btn btn-success btn-delete" data-id="">Vender</button> </td>
         </tr>
         `;
         const btnsDelete = document.querySelectorAll('.btn-delete');
@@ -86,6 +87,25 @@ window.addEventListener('DOMContentLoaded', async(e) => {
 
     });
 
+    const filterInput= document.getElementById('filter');
+        filterInput.addEventListener('keyup',function(){
+           // var x = document.getElementById("filter");
+            //x.value = x.value.toUpperCase();
+            let filterValue= document.getElementById('filter').value;
+            let tr = productTable.querySelectorAll('tr')
+            for (let index = 0; index < tr.length; index++) {
+                let val= tr[index].getElementsByTagName('td')[0];
+                if(val.innerHTML.indexOf(filterValue) > -1){
+                    tr[index].style.display='';
+                }else{
+                    tr[index].style.display='none';
+                }   
+                
+            }
+            /*let tr = productTable.querySelectorAll('tr')
+            }
+            }*/
+        });
 
     //ahora cargar categorias categorias
     const categ = await getCategorias();

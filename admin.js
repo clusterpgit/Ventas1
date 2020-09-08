@@ -32,8 +32,23 @@ const setUpProductos = data => {
             html += contenido;
 
 
-
         });
+        
+        /*const filterInput= document.getElementById('filter');
+        filterInput.addEventListener('keyup',function(){
+            let filterValue= document.getElementById('filter').value;
+            let tr = productTable.querySelectorAll('tr')
+            for (let index = 0; index < array.length; index++) {
+                let val= tr[index].getElementsByTagName('td')[1];
+                if(val.innerHTML.indexOf(filterValue) > -1){
+                    tr[index].style.display='';
+                }else{
+                    tr[index].style.display='none';
+                }   
+                
+            }
+        });*/
+
         productTable.innerHTML = html;
         const botonesEliminar = document.querySelectorAll('.btn-delete');
         console.log(botonesEliminar);
