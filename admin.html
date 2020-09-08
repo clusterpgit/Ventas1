@@ -147,6 +147,49 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="exampleModal_venta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Vender Producto </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form-vender">
+
+                                            <div class="form-group">
+                                                <input type="text" id="txt-NombreProducto" placeholder="Producto" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" id="txt-Descripcion" placeholder="Descripcion" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" id="txt-Precio" placeholder="Precio" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" id="txt-NombreProducto" placeholder="Cantidad" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input readonly type="number" id="txt-NombreProducto" placeholder="Total" class="form-control" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Vender</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
@@ -162,28 +205,31 @@
 
 
 
-                        <div class="table-responsive">
+                        <div class="table-responsive ">
                             <div class="form-group">
-                                <input class="form-control" id="filter" type="text" placeholder="Buscar producto"/>
+                                <input class="form-control" id="filter" type="text" placeholder="Buscar producto" />
                             </div>
-                            <table class="table table-striped table-sm">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-striped table-sm">
 
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Producto</th>
-                                        <th>Descripcion</th>
-                                        <th>Categoria</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Funciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tblProductos">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Producto</th>
+                                            <th>Descripcion</th>
+                                            <th>Categoria</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                            <th>Funciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblProductos">
 
-                                </tbody>
+                                    </tbody>
 
-                            </table>
+                                </table>
+                            </div>
+
                         </div>
                     </div>
             </main>

@@ -10,6 +10,8 @@ const getCategorias = () => fs.collection('categoria').orderBy("Categoria", "asc
 
 const getProducto = (id) => fs.collection('producto').doc(id).get(); // esto es para el editar
 
+
+
 const updateProducto = (id, productoEditado) =>
     fs.collection('producto').doc(id).update(productoEditado);
 
@@ -53,7 +55,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Precio}</td>
             <td><button class="btn btn-danger btn-delete" data-id="${prod.id}"  >Eliminar</button> 
             <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal">Editar</button>
-            <button class="btn btn-success btn-delete" data-id="">Vender</button> </td>
+            <button class="btn btn-success btn-vender" data-id="${prod.id}" data-toggle="modal" data-target="#exampleModal_venta">Vender</button> </td>
         </tr>
         `;
         const btnsDelete = document.querySelectorAll('.btn-delete');
@@ -63,6 +65,19 @@ window.addEventListener('DOMContentLoaded', async(e) => {
                 //console.log(e.target.dataset.id);
                 await deleteProducto(e.target.dataset.id);
                 location.reload();
+            });
+        });
+
+        const btnsVender = document.querySelectorAll('.btn-vender');
+        btnsVender.forEach(btn => {
+            btn.addEventListener('click', async(e) => {
+                console.log('vendiendo');
+                const productoE = await getProducto(e.target.dataset.id);
+                const producto = productoE.data().NombreP;
+                const descripcion = productoE.data().Descripcion;
+                console.log(producto, descripcion);
+
+
             });
         });
 
@@ -87,25 +102,25 @@ window.addEventListener('DOMContentLoaded', async(e) => {
 
     });
 
-    const filterInput= document.getElementById('filter');
-        filterInput.addEventListener('keyup',function(){
-           // var x = document.getElementById("filter");
-            //x.value = x.value.toUpperCase();
-            let filterValue= document.getElementById('filter').value;
-            let tr = productTable.querySelectorAll('tr')
-            for (let index = 0; index < tr.length; index++) {
-                let val= tr[index].getElementsByTagName('td')[0];
-                if(val.innerHTML.indexOf(filterValue) > -1){
-                    tr[index].style.display='';
-                }else{
-                    tr[index].style.display='none';
-                }   
-                
+    const filterInput = document.getElementById('filter');
+    filterInput.addEventListener('keyup', function() {
+        // var x = document.getElementById("filter");
+        //x.value = x.value.toUpperCase();
+        let filterValue = document.getElementById('filter').value;
+        let tr = productTable.querySelectorAll('tr');
+        for (let index = 0; index < tr.length; index++) {
+            let val = tr[index].getElementsByTagName('td')[0];
+            if (val.innerHTML.indexOf(filterValue) > -1) {
+                tr[index].style.display = '';
+            } else {
+                tr[index].style.display = 'none';
             }
-            /*let tr = productTable.querySelectorAll('tr')
-            }
-            }*/
-        });
+
+        }
+        /*let tr = productTable.querySelectorAll('tr')
+        }
+        }*/
+    });
 
     //ahora cargar categorias categorias
     const categ = await getCategorias();
