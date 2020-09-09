@@ -264,6 +264,12 @@ formVenta.addEventListener('submit', async(e) => {
             Total: precioTotal,
             Fecha: today
         });
+        const nuevaCantidad = cantidadDisp - cantidadVender;
+        // ahora editar la cantidad
+        fs.collection('producto').doc(id).update({
+            Cantidad: nuevaCantidad
+        });
+        //alert('Producto Vendido');
         location.reload();
     }
 
