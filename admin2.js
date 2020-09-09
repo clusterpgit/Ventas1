@@ -139,6 +139,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
 
 //INSERTAR PRODUCTO
 const formInsertar = document.getElementById('form-insertarProducto');
+const formVender = document.getElementById('form-vender');
 
 formInsertar.addEventListener('submit', async(e) => {
     e.preventDefault();
