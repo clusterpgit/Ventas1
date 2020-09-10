@@ -12,8 +12,7 @@ const getProducto = (id) => fs.collection('producto').doc(id).get(); // esto es 
 
 
 
-const updateProducto = (id, productoEditado) =>
-    fs.collection('producto').doc(id).update(productoEditado);
+const updateProducto = (id, productoEditado) => fs.collection('producto').doc(id).update(productoEditado);
 
 
 const consultaCodigo = () => fs.collection('producto').orderBy('Codigo', 'desc').limit(1).get(); //consulta para el ultimo codigo ingresado
@@ -34,6 +33,8 @@ btnCancelar.addEventListener('click', e => {
 //DELETE
 
 const deleteProducto = id => fs.collection("producto").doc(id).delete();
+
+const formVender = document.getElementById('form-vender');
 
 window.addEventListener('DOMContentLoaded', async(e) => {
 
@@ -73,9 +74,27 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             btn.addEventListener('click', async(e) => {
                 console.log('vendiendo');
                 const productoE = await getProducto(e.target.dataset.id);
+                varId = productoE.id;
                 const producto = productoE.data().NombreP;
                 const descripcion = productoE.data().Descripcion;
+                const precio = productoE.data().Precio;
+                const cantidad = productoE.data().Cantidad;
                 console.log(producto, descripcion);
+
+                formVender['txt-Id'].value = productoE.id;
+
+                formVender['txt-Prod'].value = productoE.data().NombreP;
+
+                formVender['txt-Descripcion'].value = descripcion;
+                formVender['txt-Precio'].value = precio;
+                formVender['txt-Cantidad'].value = cantidad;
+
+                /*
+                    para vender: 
+                    ver cantidad y ver si lo que pide es < cantidad total 
+
+                */
+
 
 
             });
@@ -139,8 +158,6 @@ window.addEventListener('DOMContentLoaded', async(e) => {
 
 //INSERTAR PRODUCTO
 const formInsertar = document.getElementById('form-insertarProducto');
-const formVender = document.getElementById('form-vender');
-
 formInsertar.addEventListener('submit', async(e) => {
     e.preventDefault();
     const producto = formInsertar['txt-producto'].value;
@@ -190,29 +207,6 @@ formInsertar.addEventListener('submit', async(e) => {
         });
     }
 
-    //console.log(producto, descripcion, categoria, cantidad, precio);
-
-
-
-
-    /*
-    categ.forEach(doc => {
-        //console.log(doc.data());
-        const categoria = doc.data();
-        const contenido = ` 
-                    <option >${categoria.Categoria}</option>
-            `;
-        htmlCat += contenido;
-    });
-    */
-    /*codigoUltimo.orderBy('Codigo').get();
-    codigoUltimo.forEach(doc => {
-        //RECORRER Y VER QUE PEX
-        //https://googleapis.dev/nodejs/firestore/latest/Query.html
-        //https://stackoverflow.com/questions/48097696/how-to-combine-firestore-orderby-desc-with-startafter-cursor
-
-    });*/
-
     location.reload();
 });
 
@@ -229,7 +223,63 @@ formInsertarCategoria.addEventListener('submit', async(e) => {
     location.reload();
 });
 
+//vender
+const formVenta = document.getElementById('form-vender');
 
+formVenta.addEventListener('submit', async(e) => {
+    e.preventDefault();
+    console.log('vendiendo');
+    const id = formVender['txt-Id'].value;
+    const cantidadDisp = formVender['txt-Cantidad'].value;
+    const cantidadVender = formVender['txt-CantidadVender'].value;
+    const producto = formVender['txt-Prod'].value;
+    const descripcion = formVender['txt-Descripcion'].value;
+    const precioUnitario = formVender['txt-Precio'].value;
+
+    if (cantidadVender > cantidadDisp) {
+        alert('Cantidad a vender excede la cantidad en inventario');
+    } else { // hace la venta y actualizacion
+        const precioTotal = precioUnitario * cantidadVender;
+
+        // ahora vamos a obtener fecha actual
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        today = dd + '/' + mm + '/' + yyyy;
+        const response = await fs.collection('venta').doc().set({
+            Producto: producto,
+            Descripcion: descripcion,
+            PrecioU: precioUnitario,
+            CantidadV: cantidadVender,
+            Total: precioTotal,
+            Fecha: today
+        });
+        const nuevaCantidad = cantidadDisp - cantidadVender;
+        // ahora editar la cantidad
+        fs.collection('producto').doc(id).update({
+            Cantidad: nuevaCantidad
+        });
+        //alert('Producto Vendido');
+        location.reload();
+    }
+
+
+    /*
+    const response = await fs.collection('categoria').doc().set({
+        Categoria: nuevaCat
+    });
+    location.reload();*/
+});
 
 
 
