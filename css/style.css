@@ -15,11 +15,87 @@
   transform: translate(-50%, -50%);
 }
 
-.centered > a , .info-text {
+/*holi*/
+
+.centered > a , .info-text>h1 , .follow-us {
    text-decoration: none;
    font-family: 'Bebas Neue', cursive;
    color:black;
 }
+
+
+.nav-link{
+	font-size: 20px;
+	color:red;
+}
+
+.fa-facebook-square{
+
+	color:blue;
+	font-size:40px;
+
+}
+
+.fa-twitter-square{
+	color:#33a8c7;
+	font-size:40px;
+}
+
+.fa-instagram-square{
+	color:#9336fd;
+	font-size:40px;
+}
+
+
+
+footer{
+	margin-top: 50px;
+	background-color: #f5f3f4;
+}
+
+footer i{
+	letter-spacing: 0.7em;
+}
+
+.follow-us{
+	font-size: 20px;
+}
+.contact > p{
+
+	margin-top:20px;
+	
+}
+ul { 
+  margin-top: 10px;
+  margin-left: 25px;
+  padding: 0; 
+  list-style: none; 
+  display: table;
+  text-align: center;
+}
+li a  {
+
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+
+}
+
+.login, .mas{
+  margin-top: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+}
+.nav-link:hover{
+	border-bottom: 3px solid red;
+}
+
 
 
 .info-text > h1{
@@ -31,6 +107,12 @@
   
 }
 
+.card{
+	margin-right: 2px;
+	margin-bottom: 5px;
+	margin-left: 2px;
+	margin-top: 5px; 
+}
 .card > img {
   filter: opacity(70%);
 }
@@ -40,6 +122,7 @@
 	font-family: 'Lobster', cursive;
 	font-size: 40px;
 }
+
 
 
 .modal-header{
@@ -52,20 +135,36 @@
 	margin-top: 200px;
 }
 
+.footer > .row{
+	margin-bottom: 10px;
+} 
+
+
+/*MODAL LOGIN*/
+.login-model{
+	background-color: #f0efeb;
+}
+
+
 
 @media (min-width: 1200px) {
- 	 .jumbotron{
+ 	 .jumbotron-fluid{
+ 	 	height: 600px;
+	 	background-color: red;
 		background-image: url("../images/bg-1.jpg");
 		background-size: cover;
-	 	height: 720px;
+	 	background-repeat: no-repeat;
 }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
 	 .jumbotron{
+	 	background-color: red;
+	 	height: 500px;
+	 	width: 100%;
 		background-image: url("../images/bg-1.jpg");
 	 	background-size: cover;
-	 	height: 720px;
+	 	background-repeat: no-repeat;
 	}
 
 }
@@ -73,17 +172,31 @@
 @media (min-width: 768px) and (max-width: 991px) {
   /* Home Page */
    .jumbotron{
+   		background-image: url("../images/bg-1.jpg");
+	 	background-size: cover;
+	 	width: 100%;
+	 	background-repeat: no-repeat;
+	 	
+   		/*height: 500px;
+	 	width: 100%;
 		background-image: url("../images/bg-1.jpg");
 	 	background-size: cover;
-	 	height: 500px;
+	 	background-repeat: no-repeat;*/
 	}
   /* End Home Page */
 
-  @media (min-width: 577) and (max-width: 767px) {
+  @media (min-width: 577px) and (max-width: 767px) {
 		.jumbotron{
-			background-image: url("../images/bg-1.jpg");
-	 		background-size: cover;
-	 		height: 500px;
+   			
+	 		background-image: url("../images/bg-1.jpg");
+	 	    background-size: inherit;
+	 	    width: 100%;
+   		
 		}
+	}
+
+	@media (max-width: 576px) { 
+		.
+
 	}
 

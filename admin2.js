@@ -54,9 +54,9 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Categoria}</td>
             <td>${prod.Cantidad}</td>
             <td>${prod.Precio}</td>
-            <td><button class="btn btn-danger btn-delete" data-id="${prod.id}"  >Eliminar</button> 
-            <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal">Editar</button>
-            <button class="btn btn-success btn-vender" data-id="${prod.id}" data-toggle="modal" data-target="#exampleModal_venta">Vender</button> </td>
+            <td><button class="btn btn-danger btn-delete" data-id="${prod.id}"><i class="fas fa-trash-alt"></i></button> 
+            <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-success btn-vender" data-id="${prod.id}" data-toggle="modal" data-target="#exampleModal_venta"><i class="fas fa-cart-plus"></i></button> </td>
         </tr>
         `;
         const btnsDelete = document.querySelectorAll('.btn-delete');
