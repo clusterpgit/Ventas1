@@ -39,13 +39,13 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="home"></span> Inventario y Venta <span class="sr-only"></span>
+                            <a class="nav-link" href="admin.html">
+                                <span data-feather="home"></span> Inventario <span class="sr-only"></span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="venta.html">
-                                <span data-feather="shopping-cart"></span> Vendedores
+                                <span data-feather="shopping-cart"></span> Vender
                             </a>
                         </li>
                         <!-- 
@@ -95,7 +95,7 @@
                                                 <input type="number" id="txt-cantidad" placeholder="Cantidad" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="number" id="txt-precio" step="0.01" placeholder="Precio" class="form-control" />
+                                                <input type="number" id="txt-precio" placeholder="Precio" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary" id="btn-Producto">Ingresar a inventario</button>
@@ -116,97 +116,12 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="exampleModal_categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>Registrar Categoria </h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="form-registrarCategoria">
-
-                                            <div class="form-group">
-                                                <input type="text" id="txt-nuevaCategoria" placeholder="Nueva Categoria" class="form-control" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Registrar Nueva Categoria</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="exampleModal_venta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>Vender Producto </h3>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form id="form-vender">
-
-                                            <div class="form-group">
-                                                <input type="text" id="txt-NombreProducto" placeholder="Producto" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" id="txt-Descripcion" placeholder="Descripcion" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" id="txt-Categoria" placeholder="Categoria" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" id="txt-Precio" placeholder="Precio" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="number" id="txt-NombreProducto" placeholder="Cantidad" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input readonly type="number" id="txt-NombreProducto" placeholder="Total" class="form-control" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Vender</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="container-fluid table-content">
                     <div class="row">
                         <div class="col-lg-8">
-                            <h1>Inventario de Productos</h1>
+                            <h1>Reporte de Ventas</h1>
                         </div>
-                        <div class="col-lg-4">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Agregar Producto</button>
-                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal_categoria">Agregar Categoria</button>
-                        </div>
-
-
 
                         <div class="table-responsive ">
                             <div class="form-group">
@@ -217,13 +132,12 @@
 
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Codigo</th>
+                                            <th>Fecha</th>
                                             <th>Producto</th>
                                             <th>Descripcion</th>
-                                            <th>Categoria</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio</th>
-                                            <th>Funciones</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Cantidad Vendida</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tblProductos">
@@ -285,7 +199,7 @@
 
     <!--CODIGO PERSONALIZADO-->
     <!--    <script src="admin.js"></script>   -->
-    <script src="admin2.js"></script>
+    <script src="reportes.js"></script>
 </body>
 </body>
 
