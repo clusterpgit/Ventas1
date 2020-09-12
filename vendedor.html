@@ -1,16 +1,289 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Dashboard Template · Bootstrap</title>
 
-    <title>Vendedor</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="fontawesome-free-5.14.0-web/css/fontawesome.css" rel="stylesheet">
+    <link href="fontawesome-free-5.14.0-web/css/brands.css" rel="stylesheet">
+    <link href="fontawesome-free-5.14.0-web/css/solid.css" rel="stylesheet">
 
-
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>vendedor</h1>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Confecciones Lisga</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#" id="logout">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="home"></span> Inventario y Venta <span class="sr-only"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="venta.html">
+                                <span data-feather="shopping-cart"></span> Vendedores
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="reportes.html">
+                                <span data-feather="bar-chart-2"></span> Reportes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="container-fluid">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form-insertarProducto">
+                                            <div class="form-group">
+                                                <input type="text" id="txt-producto" placeholder="Producto" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea placeholder="Descripcion" id="txt-descripcion" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <h5>Categoria:</h5>
+                                                <select class="custom-select" name="categoria" id="lista-categorias">
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" id="txt-cantidad" placeholder="Cantidad" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" id="txt-precio" step="0.01" placeholder="Precio" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success btn-lg" id="btn-Producto">Ingresar a inventario</button>
+                                                <button class="btn btn-danger btn-lg" id="btn-Cerrar">Cancelar</button>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal_categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Registrar Categoria </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form-registrarCategoria">
+
+                                            <div class="form-group">
+                                                <input type="text" id="txt-nuevaCategoria" placeholder="Nueva Categoria" class="form-control" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Registrar Nueva Categoria</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal_venta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Vender Producto </h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form id="form-vender">
+
+                                            <div class="form-group">
+                                                <input readonly type="text" id="txt-Id" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Producto: </h6>
+                                                <input readonly type="text" id="txt-Prod" placeholder="Producto" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Descripcion: </h6>
+                                                <input readonly type="text" id="txt-Descripcion" placeholder="Descripcion" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Precio: </h6>
+                                                <input readonly type="text" id="txt-Precio" placeholder="Precio" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Cantidad Disponible: </h6>
+                                                <input readonly type="number" id="txt-Cantidad" placeholder="Cantidad" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Cantidad a Vender: </h6>
+                                                <input type="number" id="txt-CantidadVender" placeholder="Cantidad" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <h6>Total: </h6>
+                                                <input readonly type="number" id="txt-NombreProducto" placeholder="Total" class="form-control" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Vender</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div class="container-fluid table-content">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="title-p">Inventario de Productos</h1>
+                        </div>
+
+
+
+                        <div class="table-responsive ">
+                            <div class="form-group">
+
+                                <input class="form-control" id="filter" type="text" placeholder="Buscar producto" />
+                            </div>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                <table class="table table-striped table-sm">
+
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Producto</th>
+                                            <th>Descripcion</th>
+                                            <th>Categoria</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                            <th>Funciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblProductos">
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+            </main>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="js/dashboard.js"></script>
+
+
+    <!--FIREBASE SCRIPTS-->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!--agregando la autenticacion de firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB5Bldl7MFaXtyb8AUG3JyPx4eDkoCChZk",
+            authDomain: "ventas1-firebase.firebaseapp.com",
+            databaseURL: "https://ventas1-firebase.firebaseio.com",
+            projectId: "ventas1-firebase",
+            storageBucket: "ventas1-firebase.appspot.com",
+            messagingSenderId: "439048559331",
+            appId: "1:439048559331:web:bcfc97eab779c42f8203d6"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //constante para acceder a la auth de firebase
+        const auth2 = firebase.auth();
+        const fs = firebase.firestore();
+    </script>
+
+    <!--CODIGO PERSONALIZADO-->
+    <!--    <script src="admin.js"></script>   -->
+    <script src="vendedor.js"></script>
+</body>
 </body>
 
 </html>

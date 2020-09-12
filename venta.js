@@ -23,12 +23,12 @@ formRegistrarV.addEventListener('submit', async(e) => {
         Clave: clave
     });
 
-
     //ahora registrandolo en sesion
 
     auth2
         .createUserWithEmailAndPassword(email, clave)
         .then(userCredential => {
+
             console.log('registrado');
             //alert('Vendedor Registrado');
         });
