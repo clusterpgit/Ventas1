@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.PrecioU}</td>
             <td>${prod.CantidadV}</td>
             <td>${prod.Total}</td>
-           
         </tr>
         `;
 

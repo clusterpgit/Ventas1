@@ -24,11 +24,22 @@ let codigoU = 100;
 
 const btnCancelar = document.querySelector('#btn-Cerrar');
 
+
 btnCancelar.addEventListener('click', e => {
     e.preventDefault();
     console.log('cancelando');
     location.reload();
 });
+
+/////////////////////////////// NUEVO CODIGO PARA ARREGLARLO
+const btnEliminar = document.querySelector('#btnEliminarProducto');
+
+btnEliminar.addEventListener('click', e => {
+    e.preventDefault();
+    const codigoProducto = document.querySelector('txtCodigoProducto');
+    console.log(codigoProducto);
+});
+
 
 //DELETE
 
@@ -42,10 +53,12 @@ window.addEventListener('DOMContentLoaded', async(e) => {
     let htmlTablaProducto = "";
     htmlTablaProducto += '<thead> <tr>  <th>Codigo</th>   <th>Producto</th> <th>Descripcion</th> <th>Categoria</th> <th>Cantidad</th> <th>Precio</th> </tr> </thead>';
     querySnapshot.forEach(doc => {
-
+        //que quede la barra de busqueda y un input text para meter el codigo
+        //botones al lado que recogen el codigo y hacen el CRUD 
         const prod = doc.data();
         prod.id = doc.id;
-        //console.log(prod);
+
+        console.log(prod.id);
         productTable.innerHTML += ` 
         <tr>
             <th scope="row">${prod.Codigo}</th> 
@@ -56,9 +69,12 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Precio}</td>
             <td><button class="btn btn-danger btn-delete" data-id="${prod.id}"><i class="fas fa-trash-alt"></i></button> 
             <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-success btn-vender" data-id="${prod.id}" data-toggle="modal" data-target="#exampleModal_venta"><i class="fas fa-cart-plus"></i></button> </td>
+            <button class="btn btn-success btn-vender" data-id="hola" data-toggle="modal" data-target="#exampleModal_venta"><i class="fas fa-cart-plus"></i></button> 
+            </td>
         </tr>
         `;
+
+
         const btnsDelete = document.querySelectorAll('.btn-delete');
         //console.log(btnsDelete);
         btnsDelete.forEach(btn => {
@@ -73,7 +89,10 @@ window.addEventListener('DOMContentLoaded', async(e) => {
         btnsVender.forEach(btn => {
             btn.addEventListener('click', async(e) => {
                 console.log('vendiendo');
-                const productoE = await getProducto(e.target.dataset.id);
+                console.log(e.target.dataset);
+                console.log(e.target.dataset.id);
+
+                /*const productoE = await getProducto(e.target.dataset.id);
                 varId = productoE.id;
                 const producto = productoE.data().NombreP;
                 const descripcion = productoE.data().Descripcion;
@@ -88,12 +107,8 @@ window.addEventListener('DOMContentLoaded', async(e) => {
                 formVender['txt-Descripcion'].value = descripcion;
                 formVender['txt-Precio'].value = precio;
                 formVender['txt-Cantidad'].value = cantidad;
-
-                /*
-                    para vender: 
-                    ver cantidad y ver si lo que pide es < cantidad total 
-
                 */
+
 
 
 
