@@ -18,6 +18,12 @@ const updateProducto = (id, productoEditado) => fs.collection('producto').doc(id
 const consultaCodigo = () => fs.collection('producto').orderBy('Codigo', 'desc').limit(1).get(); //consulta para el ultimo codigo ingresado
 
 
+/////////////////CONSULTAS NUEVAS
+
+const getProd = (codigo) => fs.collection('producto').where('Codigo', '==', codigo).get();
+///////////////FIN CONSULTAS NUEVAS
+
+
 let editStatus = false;
 let varId = '';
 let codigoU = 100;
@@ -32,13 +38,36 @@ btnCancelar.addEventListener('click', e => {
 });
 
 /////////////////////////////// NUEVO CODIGO PARA ARREGLARLO
-const btnEliminar = document.querySelector('#btnEliminarProducto');
 
-btnEliminar.addEventListener('click', e => {
+const btnEliminar = document.querySelector('#btnEliminarProducto');
+const formCRUD = document.getElementById('formCRUD');
+
+//nuevo eliminar
+btnEliminar.addEventListener('click', async(e) => {
     e.preventDefault();
-    const codigoProducto = document.querySelector('txtCodigoProducto');
-    console.log(codigoProducto);
+    const codigo = formCRUD['txt-CodigoProducto'].value;
+    console.log(codigo);
+    const querySnapshot = await getProductos();
+    querySnapshot.forEach(doc => {
+        //que quede la barra de busqueda y un input text para meter el codigo
+        //botones al lado que recogen el codigo y hacen el CRUD 
+        const prod = doc.data();
+        prod.id = doc.id;
+        // console.log(prod.id);
+        const cod = prod.Codigo;
+        if (cod == codigo) {
+            console.log('codigos iguales');
+            console.log(prod.id);
+            // AQUI HACER EL CRUD
+            deleteProducto(prod.id);
+        } else {
+            console.log('codigos NO iguales');
+        }
+    });
 });
+
+
+// nuevo editar
 
 
 //DELETE
@@ -58,7 +87,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
         const prod = doc.data();
         prod.id = doc.id;
 
-        console.log(prod.id);
+        //console.log(prod.id);
         productTable.innerHTML += ` 
         <tr>
             <th scope="row">${prod.Codigo}</th> 
@@ -67,13 +96,10 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Categoria}</td>
             <td>${prod.Cantidad}</td>
             <td>${prod.Precio}</td>
-            <td><button class="btn btn-danger btn-delete" data-id="${prod.id}"><i class="fas fa-trash-alt"></i></button> 
-            <button class="btn btn-secondary btn-edit" data-id="${prod.id}"  data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-success btn-vender" data-id="hola" data-toggle="modal" data-target="#exampleModal_venta"><i class="fas fa-cart-plus"></i></button> 
+            <td>
             </td>
         </tr>
         `;
-
 
         const btnsDelete = document.querySelectorAll('.btn-delete');
         //console.log(btnsDelete);
@@ -91,27 +117,18 @@ window.addEventListener('DOMContentLoaded', async(e) => {
                 console.log('vendiendo');
                 console.log(e.target.dataset);
                 console.log(e.target.dataset.id);
-
-                /*const productoE = await getProducto(e.target.dataset.id);
+                const productoE = await getProducto(e.target.dataset.id);
                 varId = productoE.id;
                 const producto = productoE.data().NombreP;
                 const descripcion = productoE.data().Descripcion;
                 const precio = productoE.data().Precio;
                 const cantidad = productoE.data().Cantidad;
                 console.log(producto, descripcion);
-
                 formVender['txt-Id'].value = productoE.id;
-
                 formVender['txt-Prod'].value = productoE.data().NombreP;
-
                 formVender['txt-Descripcion'].value = descripcion;
                 formVender['txt-Precio'].value = precio;
                 formVender['txt-Cantidad'].value = cantidad;
-                */
-
-
-
-
             });
         });
 
