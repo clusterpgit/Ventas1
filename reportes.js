@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
         productTable.innerHTML += ` 
         <tr>
             <th scope="row">${prod.Fecha}</th> 
+            <td>${prod.Correo}</td> 
             <td>${prod.Producto}</td> 
             <td>${prod.Descripcion}</td>
             <td>${prod.PrecioU}</td>

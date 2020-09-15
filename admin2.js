@@ -324,12 +324,18 @@ formVenta.addEventListener('submit', async(e) => {
     const producto = formVender['txt-Prod'].value;
     const descripcion = formVender['txt-Descripcion'].value;
     const precioUnitario = formVender['txt-Precio'].value;
+    const conteoProducto = cantidadDisp - cantidadVender;
 
-    if (cantidadVender > cantidadDisp) {
+    if (conteoProducto < 0) {
         alert('Cantidad a vender excede la cantidad en inventario');
+        console.log(cantidadDisp, ' < ', cantidadVender);
     } else { // hace la venta y actualizacion
         const precioTotal = precioUnitario * cantidadVender;
-
+        var correoV = '';
+        var user = firebase.auth().currentUser;
+        if (user != null) {
+            correoV = user.email;
+        }
         // ahora vamos a obtener fecha actual
         var today = new Date();
         var dd = today.getDate();
@@ -345,13 +351,15 @@ formVenta.addEventListener('submit', async(e) => {
         }
 
         today = dd + '/' + mm + '/' + yyyy;
+        alert(correoV);
         const response = await fs.collection('venta').doc().set({
             Producto: producto,
             Descripcion: descripcion,
             PrecioU: precioUnitario,
             CantidadV: cantidadVender,
             Total: precioTotal,
-            Fecha: today
+            Fecha: today,
+            Correo: correoV
         });
         const nuevaCantidad = cantidadDisp - cantidadVender;
         // ahora editar la cantidad
@@ -367,6 +375,8 @@ formVenta.addEventListener('submit', async(e) => {
     const response = await fs.collection('categoria').doc().set({
         Categoria: nuevaCat
     });
+
+
     location.reload();*/
 });
 
