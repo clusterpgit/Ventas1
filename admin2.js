@@ -66,10 +66,66 @@ btnEliminar.addEventListener('click', async(e) => {
     });
 });
 
-
 // nuevo editar
+const btnEditar = document.querySelector('#btnEditarProducto');
+btnEditar.addEventListener('click', async(e) => {
+    e.preventDefault();
+    const codigo = formCRUD['txt-CodigoProducto'].value;
+    const querySnapshot = await getProductos();
+    querySnapshot.forEach(doc => {
+        const prod = doc.data();
+        prod.id = doc.id;
+        // console.log(prod.id);
+        const cod = prod.Codigo;
+        if (cod == codigo) {
+            console.log('codigos iguales');
+            console.log(prod.id);
+            // AQUI HACER EL CRUD
+            // const productoE = prod.data();
+            editStatus = true;
+            varId = prod.id;
+            formInsertar['txt-producto'].value = prod.NombreP;
+            formInsertar['txt-descripcion'].value = prod.Descripcion;
+            formInsertar['lista-categorias'].value = prod.Categoria;
+            formInsertar['txt-cantidad'].value = prod.Cantidad;
+            formInsertar['txt-precio'].value = prod.Precio;
+
+            formInsertar['btn-Producto'].innerText = 'Update';
+
+        } else {
+            // console.log('codigos NO iguales');
+        }
+    });
+});
 
 
+//nuevo vender
+const btnVender = document.querySelector('#btnVenderProducto');
+btnVender.addEventListener('click', async(e) => {
+    e.preventDefault();
+    const codigo = formCRUD['txt-CodigoProducto'].value;
+    const querySnapshot = await getProductos();
+    querySnapshot.forEach(doc => {
+        const prod = doc.data();
+        prod.id = doc.id;
+        // console.log(prod.id);
+        const cod = prod.Codigo;
+        if (cod == codigo) {
+            console.log('codigos iguales');
+            console.log(prod.id);
+            // AQUI HACER EL CRUD
+            // const productoE = prod.data();
+            varId = prod.id;
+            formVender['txt-Id'].value = prod.id;
+            formVender['txt-Prod'].value = prod.NombreP;
+            formVender['txt-Descripcion'].value = prod.Descripcion;
+            formVender['txt-Precio'].value = prod.Precio;
+            formVender['txt-Cantidad'].value = prod.Cantidad;
+        } else {
+            // console.log('codigos NO iguales');
+        }
+    });
+});
 //DELETE
 
 const deleteProducto = id => fs.collection("producto").doc(id).delete();
@@ -97,6 +153,7 @@ window.addEventListener('DOMContentLoaded', async(e) => {
             <td>${prod.Cantidad}</td>
             <td>${prod.Precio}</td>
             <td>
+
             </td>
         </tr>
         `;
