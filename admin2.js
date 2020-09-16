@@ -10,8 +10,6 @@ const getCategorias = () => fs.collection('categoria').orderBy("Categoria", "asc
 
 const getProducto = (id) => fs.collection('producto').doc(id).get(); // esto es para el editar
 
-
-
 const updateProducto = (id, productoEditado) => fs.collection('producto').doc(id).update(productoEditado);
 
 
@@ -22,7 +20,6 @@ const consultaCodigo = () => fs.collection('producto').orderBy('Codigo', 'desc')
 
 const getProd = (codigo) => fs.collection('producto').where('Codigo', '==', codigo).get();
 ///////////////FIN CONSULTAS NUEVAS
-
 
 let editStatus = false;
 let varId = '';
@@ -158,54 +155,6 @@ window.addEventListener('DOMContentLoaded', async(e) => {
         </tr>
         `;
 
-        const btnsDelete = document.querySelectorAll('.btn-delete');
-        //console.log(btnsDelete);
-        btnsDelete.forEach(btn => {
-            btn.addEventListener('click', async(e) => {
-                //console.log(e.target.dataset.id);
-                await deleteProducto(e.target.dataset.id);
-                location.reload();
-            });
-        });
-
-        const btnsVender = document.querySelectorAll('.btn-vender');
-        btnsVender.forEach(btn => {
-            btn.addEventListener('click', async(e) => {
-                console.log('vendiendo');
-                console.log(e.target.dataset);
-                console.log(e.target.dataset.id);
-                const productoE = await getProducto(e.target.dataset.id);
-                varId = productoE.id;
-                const producto = productoE.data().NombreP;
-                const descripcion = productoE.data().Descripcion;
-                const precio = productoE.data().Precio;
-                const cantidad = productoE.data().Cantidad;
-                console.log(producto, descripcion);
-                formVender['txt-Id'].value = productoE.id;
-                formVender['txt-Prod'].value = productoE.data().NombreP;
-                formVender['txt-Descripcion'].value = descripcion;
-                formVender['txt-Precio'].value = precio;
-                formVender['txt-Cantidad'].value = cantidad;
-            });
-        });
-
-        const btnsEdit = document.querySelectorAll('.btn-edit');
-        btnsEdit.forEach(btn => {
-            btn.addEventListener('click', async(e) => {
-                console.log('editando');
-                const productoE = await getProducto(e.target.dataset.id);
-
-                editStatus = true;
-                varId = productoE.id;
-                formInsertar['txt-producto'].value = productoE.data().NombreP;
-                formInsertar['txt-descripcion'].value = productoE.data().Descripcion;
-                formInsertar['lista-categorias'].value = productoE.data().Categoria;
-                formInsertar['txt-cantidad'].value = productoE.data().Cantidad;
-                formInsertar['txt-precio'].value = productoE.data().Precio;
-
-                formInsertar['btn-Producto'].innerText = 'Update';
-            });
-        });
 
 
     });
