@@ -156,7 +156,6 @@ window.addEventListener('DOMContentLoaded', async(e) => {
         `;
 
 
-
     });
 
     const filterInput = document.getElementById('filter');
@@ -233,7 +232,6 @@ formInsertar.addEventListener('submit', async(e) => {
             Codigo: codigoU // si de arriba cayo en el else, ahi le suma 1 al codigoU
 
         });
-
 
     } else { // aqui editamos
         await updateProducto(varId, {
